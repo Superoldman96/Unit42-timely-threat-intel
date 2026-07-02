@@ -1,30 +1,30 @@
-2026-07-02 (THURSDAY): CLICKFIX CAMPAIGN UTILIZING A MAAS KIT WITH BLOCKCHAIN C2	
+2026-07-02 (THURSDAY): CLICKFIX CAMPAIGN UTILIZING MAAS KIT WITH BLOCKCHAIN C2	
 
 AUTHORS:
 
-- Nabeel Mohamed  Billy Melicher Oleksii Alex Starov
+- Nabeel Mohamed, Billy Melicher, Alex Starov
 
 NOTES:
 
-- We are tracking an active Malware-as-a-Service (MaaS) operation abusing Polygon (MATIC) blockchain as a resilient C2 configuration with s ClickFix lure.
-- The campaign has been active for the last 28 days and we have detected 130+ compromised lure websites.
-- Compromised websites are injected with a script named tracker.js appearing as "JokerStat Analytics Tracker". 
+- We are tracking an active Malware-as-a-Service (MaaS) operation abusing the Polygon (MATIC) blockchain as a resilient C2 configuration with a ClickFix lure.
+- The campaign has been active for the last 28 days, and we have detected 130+ compromised lure websites.
+- Compromised websites are injected with a script named tracker.js, appearing as "JokerStat Analytics Tracker". 
 - In addition to the clipboard injection, this script performs screenshot and victim-session telemetry exfiltration every 2 minutes.
 - All 15 C2 domains run a full operator-facing web application with the same "JokerStat Analytics" identity.
 - WHOIS registration records suggest that all the C2 domains were registered very recently in two distinct batches in May and June 2026. 
-  -- Further, C2 domains are registered under low reputed TLDs such as .sbs, .click and .lat.
+  -- Further, C2 domains are registered under low-reputed TLDs such as .sbs, .click and .lat.
 - Passive DNS records show that these C2 collectively received over 10K queries during this short time period, indicating the widespread nature of the attack.
 
 DETAILS:
 
 - Attack Chain:
-  -- The threat actor compromises WordPress sites to inject tracker.js delivery chain.
-  -- A victim visits a compromised site and tracker.js performs a blockchain lookup to fetch the C2 server URL which is base36-encoded.
-  -- After C2 resolution, tracker.js starts collecting victim telemetry including pageview events, heartbeat and screenshots.
+  -- The threat actor compromises WordPress sites to inject tracker.js into the delivery chain.
+  -- A victim visits a compromised site, and tracker.js performs a blockchain lookup to fetch the C2 server URL, which is base36-encoded.
+  -- After C2 resolution, tracker.js starts collecting victim telemetry, including pageview events, heartbeat and screenshots.
   -- The same tracker.js then injects the clipboard content personalized per victim. 
-     --- The victim sees a fake CAPTCHA overlay and follows the instruction leading to a ClickFix attack.
+     --- The victim sees a fake CAPTCHA overlay and follows the instructions leading to a ClickFix attack.
   -- The clipboard content contains the first-stage dropper
-     --- The first-stage dropper downloads and executes a second-stage powershell script.
+     --- The first-stage dropper downloads and executes a second-stage PowerShell script.
      --- Finally, stage 3 drops an infostealer in the form of a password-protected .7z archive, written in Ruby.
 - Google search on "JokerStat" returned a top hit pointing to rhumbshop[.]shop.
   -- The results suggest that this MaaS kit is deployed more widely than the 15 C2 domains identified in this campaign.
