@@ -4,6 +4,11 @@ AUTHORS:
 
 - Alex Payne, Jonny Westfall
 
+REFERENCES:
+
+- https://www.linkedin.com/posts/clickfix-infostealer-ugcPost-7477462914392723457-wVqS/
+- https://x.com/Unit42_Intel/status/2071697279182856657
+
 NOTES:
 - Observed a multi-stage execution chain initiated via browser-based ClickFix (Fake CAPTCHA/Verification social engineering) routing users to run a malicious msiexec command.
 - The execution chain aligns with Kongtuke activity and drops a payload attributed to Havoc C2.
