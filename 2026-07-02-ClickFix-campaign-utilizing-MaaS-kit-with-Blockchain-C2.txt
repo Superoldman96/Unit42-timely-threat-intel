@@ -4,6 +4,11 @@ AUTHORS:
 
 - Nabeel Mohamed, Billy Melicher, Alex Starov
 
+REFERENCES:
+
+- https://www.linkedin.com/posts/clickfix-blockchain-ugcPost-7479981271008583680-Xyu8/
+- https://x.com/Unit42_Intel/status/2074215628802585085
+
 NOTES:
 
 - We are tracking an active Malware-as-a-Service (MaaS) operation abusing the Polygon (MATIC) blockchain as a resilient C2 configuration with a ClickFix lure.
