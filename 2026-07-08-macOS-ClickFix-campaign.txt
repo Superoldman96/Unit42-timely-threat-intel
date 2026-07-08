@@ -27,9 +27,9 @@ ATTACK CHAIN DETAILS:
 
 - The victim is attracted to lure pages via paid ad redirect through grabora[.]org or search (Example campaign ID 11209365). 
 - MacOS is the tracked platform in the redirector URL.
-- Victim lands on a page (<subdomain>.pages[.]dev) presenting one of the two CAPTCHA templates.
+- Victim lands on a page (<subdomain>.pages[.]dev) presenting one of two CAPTCHA-style templates.
 - Victim clicks the CAPTCHA checkbox, which writes the bash payload to the clipboard. 
-  -- Then transitions to "Verifying…" and then displays the macOS terminal instructions.
+  -- Then transitions to "Verifying..." and then displays the macOS terminal instructions.
 - Victim follows the on-screen instruction, which decodes and executes the remote bash script named update.sh.
 - Update.sh installs a persistent backdoor on the victim's machine using the macOS osascript command.
   -- This wraps a base64-encoded AppleScript that writes a per-victim LaunchAgent plist.
