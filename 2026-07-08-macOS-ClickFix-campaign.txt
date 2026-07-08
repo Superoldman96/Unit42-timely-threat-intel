@@ -1,0 +1,67 @@
+2026-07-08 (WEDNESDAY): MACOS CLICKFIX CAMPAIGN ESTABLISHING A PERSISTENT BACKDOOR	
+
+AUTHORS:
+
+- Nabeel Mohamed, Billy Melicher, Alex Starov
+
+NOTES:
+
+- We are tracking an active MacOS ClickFix campaign that deceptively installs a persistent backdoor using macOS LaunchAgent.
+- First observed on the 3rd of July 2026
+- The campaign has been spinning up one or two lure hostnames abusing a free hosting service.
+- All clipboard payloads have the same bash piped based64 encoded payload. 
+  -- Decoded payloads contain the second stage payload with the format:
+     <random_subdomain>.<low_reputed_doman>//update.sh 
+  -- This suggests all the campaign is being generated using a kit.
+- We observed two distinct lure templates used across the campaign: 
+  1. A page mimicking a CAPTCHA style challenge with "Safe Access Confirmation"
+  2. A page mimicking another challenge with "VaultPass/Secure Identity Gateway"
+- The second stage payload has three layer nesting with base64 encoding:
+  -- bash
+  -- osascript 
+  -- AppleScript shell command
+- Three of the payload URL domains are hosting similar but low reputed betting sites.
+  -- We found fake reviews and affiliate marketing redirection links in them. 
+
+ATTACK CHAIN DETAILS:
+
+- The victim is attracted to lure pages via paid ad redirect through grabora[.]org or search (Example campaign ID 11209365). 
+- MacOS is the tracked platform in the redirector URL.
+- Victim lands on a page (<subdomain>.pages[.]dev) presenting one of the two CAPTCHA templates.
+- Victim clicks the CAPTCHA checkbox which writes the bash payload to the clipboard. 
+  -- Then transitions to "Verifying…" and then displays the macOS terminal instructions.
+- Victim follows the on-screen instruction which decodes and executes the remote bash script named update.sh.
+- Update.sh installs a persistent backdoor on the victim's machine using macOS osascript command.
+  -- This wraps a based64-encoded AppleScript that writes a per-victim LaunchAgent plist.
+- Stage 3 payload gets executed on each user login. 
+  -- The exact capabilities of stage 3 remain unconfirmed without sandbox execution of the payload.
+
+INDICATORS:
+
+EXAMPLES OF FAKE CAPTCHA/VERIFICATION PAGES:
+
+- browseraccess4.pages[.]dev
+- goprocessing-1exo.pages[.]dev
+- justamomentonenit.pages[.]dev
+- securesession2.pages[.]dev
+- trustbridge-secureidentitygatewayv2.pages[.]dev
+- verifly-identitycheckv2proceed.pages[.]dev
+- verifly-instant-idcheckv2.pages[.]dev
+- vp-secureidgateway.pages[.]dev
+
+EXAMPLES OF PAYLOAD URLS:
+
+- hxxps[:]//alph6b4.uploadphrase[.]top//update.sh
+- hxxps[:]//content-edge01.betgo[.]pro//update.sh
+- hxxps[:]//etas7zeh.scabbysurvey[.]top//update.sh
+- hxxps[:]//januic.dumanbett[.]co//update.sh
+- hxxps[:]//marezf.jackknifeautomaker[.]top//update.sh
+- hxxps[:]//member-portal01.linebetfa[.]com//update.sh
+- hxxps[:]//onliwp.303ine[.]com//update.sh
+- hxxps[:]//results-center01.pishbini[.]win//update.sh
+- hxxps[:]//systdg5o.enobahiss[.]xyz//update.sh
+
+
+EXAMPLE AFFILIATE/CLOAKING REDIRECTOR URL:
+
+- hxxps[:]//grabora[.]org/6a498a11cdbc7628e6723743?clickid=1097824619282313217&campaignid=11209365&zoneid=5578752&cost=0.000950&os=mac&browser=chrome
