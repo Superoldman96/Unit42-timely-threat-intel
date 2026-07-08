@@ -4,6 +4,11 @@ AUTHORS:
 
 - Nabeel Mohamed, Billy Melicher, Alex Starov
 
+REFERENCES:
+
+- https://www.linkedin.com/posts/clickfix-macos-ugcPost-7480738508081491968-cbTg/
+- https://x.com/Unit42_Intel/status/2074972886264156285
+
 NOTES:
 
 - We are tracking an active MacOS ClickFix campaign that deceptively installs a persistent backdoor using macOS LaunchAgent.
