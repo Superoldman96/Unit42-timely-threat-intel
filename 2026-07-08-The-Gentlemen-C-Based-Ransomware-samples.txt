@@ -1,0 +1,31 @@
+2026-07-08 (WEDNESDAY): THE GENTLEMEN C-BASED RANSOMWARE SAMPLES
+
+AUTHOR:
+
+- Matt Brady
+
+NOTES:
+
+- Unit 42 recently identified several malicious files likely associated with a C-based ransomware variant while investigating a report on The Gentlemen published by Kaspersky.
+  -- https://securelist.com/the-gentlemen-raas/120447/
+- Based on Kaspersky's reporting, the ransomware was likely still under active development at the time of discovery, and Unit 42 has not identified any uploads in the wild since April 2, 2026.
+- Each of the files are PE64 executables that use same ransom note "!-READ-ME---GEN-TLE-MEN-!.txt" which is XOR-decrypted at runtime and dropped in each traversed directory.
+- The note threatens data publication on a Tor-based leak site and instructs victims to contact thegentlemen@onionmail[.]org or thegentlemen@2mail[.]co. A 239-hour countdown is referenced in the note text.
+- The leak site URL referenced (tezwsse5czllksjb7cwp65rvnk4oobmzti2znn42i43bjdfd2prqqkad[.]onion) has been previously attributed to The Gentlemen.
+- We continue to hunt for additional samples and other indicators associated with this form of ransomware.
+
+BACKGROUND:
+
+- The Gentlemen (aka Storm-2697) is a ransomware-as-a-service (RaaS) program active since at least July 2025. 
+- Public reporting indicates that the operators were likely active months earlier as an affiliate (known as ArmCorp) of Qilin RaaS, which Unit 42 tracks as Spikey Scorpius.
+- While traditional RaaS models typically offer affiliates a 70% to 80% cut of paid ransoms, The Gentlemen offer an unprecedented 90% payout as a measure to increase recruitment.
+- Through July 7, 2026, the ransomware.live site had counted a total of 580 victims claimed by The Gentlemen across 77 countries since their inception.
+- Unit 42 analysis revealed that when comparing the last six months of 2025 to the first six months of 2026, the number of victims claimed by The Gentlemen increased by slightly more than 6x.
+
+INDICATORS:
+
+3 RELATED SAMPLES (READ: SHA256 HASH - FIRST SEEN DATE):
+
+086bdbaa9ae8ea7e9f7f22901ea8f06cd5613595fb70f64da63cf78134b21b1d - 2026-04-02
+c95f0172563259ffa8cafb687cfecfce7c0255cf3ec6b50fa71c54bef868efaf - 2026-04-01
+402818dac47dbfd05570b5e741acb76052bb14d61e7e12362560cbcd68cd81fb - 2026-03-31
