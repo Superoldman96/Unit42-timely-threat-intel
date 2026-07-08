@@ -4,6 +4,11 @@ AUTHOR:
 
 - Matt Brady
 
+REFERENCES:
+
+- https://www.linkedin.com/posts/we-recently-identified-files-likely-associated-share-7480706534059016192-HVMg/
+- https://x.com/Unit42_Intel/status/2074940861801025697
+
 NOTES:
 
 - Unit 42 recently identified several malicious files likely associated with a C-based ransomware variant while investigating a report on The Gentlemen published by Kaspersky.
