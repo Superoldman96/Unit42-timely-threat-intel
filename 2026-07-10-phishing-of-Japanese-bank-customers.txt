@@ -1,0 +1,135 @@
+2026-07-10 (FRIDAY): FAKE "POINT EXPIRATION REMINDERS" PHISHING IMPERSONATING JAPANESE FINANCIAL INSTITUTIONS.
+
+AUTHOR:
+
+- Amanda Tanner
+
+NOTES:
+
+- Unit 42 has discovered an active credential-harvesting phishing campaign.
+- This campaign is impersonating Japanese financial institutions.
+- Attackers deployed single-page phishing sites to dynamically serve fake "point expiration" alerts.
+- These pages urge uses to click a "Next" (次へ) button.
+- The goal is stealing login credentials of customers. 
+- The infrastructure relies on an automated Domain Generation Algorithm (DGA) network.
+- The DGA network generates typo-squatted subdomains.
+  -- These subdomains are attached to randomized or spoofed Japanese root domains to evade standard blocklists.
+
+INDICATORS:
+
+111 EXAMPLES OF DOMAINS ASSOCIATED WITH THIS ACTIVITY:
+
+- [redacted].[redacted]amou[.]com
+- [redacted].[redacted]amsu[.]com
+- [redacted].[redacted]anesia[.]com
+- [redacted].[redacted]ardia[.]com
+- [redacted].[redacted]arlike[.]com
+- [redacted].[redacted]ctavia[.]com
+- [redacted].[redacted]duran[.]com
+- [redacted].[redacted]eorge[.]com
+- [redacted].[redacted]eronic[.]com
+- [redacted].[redacted]guson[.]com
+- [redacted].[redacted]heodo1[.]com
+- [redacted].[redacted]hrush[.]com
+- [redacted].[redacted]jarvis[.]com
+- [redacted].[redacted]lancne[.]com
+- [redacted].[redacted]loanu[.]com
+- [redacted].[redacted]maris[.]com
+- [redacted].[redacted]merso[.]com
+- [redacted].[redacted]obert1[.]com
+- [redacted].[redacted]omeia[.]com
+- [redacted].[redacted]organ[.]com
+- [redacted].[redacted]osteri[.]com
+- [redacted].[redacted]queror[.]com
+- [redacted].[redacted]simoi[.]com
+- [redacted].[redacted]tewau[.]com
+- [redacted].[redacted]trude[.]com
+- [redacted].[redacted]untai[.]com
+- [redacted].[redacted]vnevie[.]com
+- [redacted].[redacted]xandr[.]com
+- [redacted].82banlk-co-jp[.]com
+- [redacted].aozare-avernai[.]com
+- [redacted].aozare-cestres[.]com
+- [redacted].aozare-eronica[.]com
+- [redacted].aozare-hamun[.]com
+- [redacted].aozare-isaiaho[.]com
+- [redacted].aozare-spiring[.]com
+- [redacted].aozare-suoitoi[.]com
+- [redacted].cikerman[.]com
+- [redacted].counseiu[.]com
+- [redacted].daveun[.]com
+- [redacted].daviores[.]com
+- [redacted].deivinrtbqeo[.]com
+- [redacted].delcaseaibou[.]com
+- [redacted].dickensu[.]com
+- [redacted].direcit-jabanik-co-jp[.]net
+- [redacted].diresct-jabaik-jp[.]net
+- [redacted].dirrecit-jobank-jp[.]net
+- [redacted].gavinoro[.]com
+- [redacted].hamiber[.]com
+- [redacted].heloiseu[.]com
+- [redacted].henrastriute[.]com
+- [redacted].hermosai[.]com
+- [redacted].hoeroine[.]com
+- [redacted].icolghrtetote[.]com
+- [redacted].karenaio[.]com
+- [redacted].kimberiu[.]com
+- [redacted].lainclao[.]com
+- [redacted].leasureve[.]com
+- [redacted].ltlgera-hongkong[.]com
+- [redacted].ltlgeri-hongkong[.]com
+- [redacted].ltlgero-hongkong[.]com
+- [redacted].maorious[.]com
+- [redacted].maruablemai1[.]com
+- [redacted].maruaerprue1[.]com
+- [redacted].maruahelleyo[.]com
+- [redacted].marualadysu1[.]com
+- [redacted].maruaranger1[.]com
+- [redacted].mirabule[.]com
+- [redacted].namura-hoemtared-jp[.]com
+- [redacted].nicholaiso[.]com
+- [redacted].ophelisu[.]com
+- [redacted].osemara[.]com
+- [redacted].ouei-sc-muloosalieu[.]com
+- [redacted].paorick[.]com
+- [redacted].pauleuis[.]com
+- [redacted].perousol[.]com
+- [redacted].rimaivera[.]com
+- [redacted].search-rakute-co-jp[.]com
+- [redacted].souealome[.]net
+- [redacted].uminoua[.]com
+- [redacted].venusburn[.]com
+- [redacted].vigourui[.]com
+- web[redacted].da1wiaslob[.]com
+- web[redacted].da1wiasloc[.]com
+- web[redacted].da1wiaslod[.]com
+- web[redacted].da1wiasloi[.]com
+- web[redacted].da1wiaslou[.]com
+- web[redacted].da1wiaslzb[.]com
+- web[redacted].da1wiaslzc[.]com
+- web[redacted].da1wiaslzd[.]com
+- web[redacted].da1wiaslzi[.]com
+- web[redacted].da1wiaslzu[.]com
+- web[redacted].dalwiapatere[.]com
+- web[redacted].dalwiaphelia[.]com
+- web[redacted].dalwiarindra[.]com
+- web[redacted].dalwiarpent[.]com
+- web[redacted].dalwiavangeli[.]com
+- web[redacted].dalwiawebste[.]com
+- web[redacted].helvillei[.]com
+- web[redacted].oruraine[.]com
+- web[redacted].puarkling[.]com
+- web[redacted].reciousa[.]com
+- web[redacted].s1blsecairedui[.]com
+- web[redacted].s1blsecdine[.]com
+- web[redacted].s1blsecedorau[.]com
+- web[redacted].s1blseceunice[.]com
+- web[redacted].s1blsechitne[.]com
+- web[redacted].s1blsecorious[.]com
+- web[redacted].s1blsecsacha[.]com
+- web[redacted].s1blsecsaiah[.]com
+- web[redacted].sb1secapply1[.]com
+- web[redacted].suophiaun[.]com
+
+
+
