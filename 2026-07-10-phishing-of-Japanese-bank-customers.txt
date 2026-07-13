@@ -9,8 +9,8 @@ NOTES:
 - Unit 42 has discovered an active credential-harvesting phishing campaign.
 - This campaign is impersonating Japanese financial institutions.
 - Attackers deployed single-page phishing sites to dynamically serve fake "point expiration" alerts.
-- These pages urge uses to click a "Next" (次へ) button.
-- The goal is stealing login credentials of customers. 
+- These pages urge users to click a "Next" (次へ) button.
+- The goal is to steal the login credentials of customers. 
 - The infrastructure relies on an automated Domain Generation Algorithm (DGA) network.
 - The DGA network generates typo-squatted subdomains.
   -- These subdomains are attached to randomized or spoofed Japanese root domains to evade standard blocklists.
