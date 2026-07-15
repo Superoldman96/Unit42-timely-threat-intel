@@ -1,0 +1,51 @@
+2026-07-16 (WEDNESDAY): CLICKFIX CAMPAIGN USING WEBASSEMBLY (WASM) AND STEGANOGRAPHY
+
+AUTHORS:
+
+- Shaown Sarker, Nabeel Mohammed, Shehroze Farooqi, Billy Melicher, Alex Starov
+
+NOTES:
+
+- A ClickFix campaign is using on-the-fly WebAssembly (wasm) module instantiation and steganography through SVG images.
+- Pages from legitimate but compromised websites contain injected JavaScript with base64-encoded text.
+- This injected JavaScript builds a wasm module.
+- The wasm module exports decode URLs from the base64-encoded text in the JavaScript.
+  -- The extracted URLs point to SVG image files.
+  -- These SVG images contain embedded data used for steganography.
+  -- So far, these URLs end in facebook.svg or instagram.svg
+  -- Many of these domains are open directories.
+- More exports from the wasm module generate the final ClickFix URL using steganography from the SVG files.
+- This final ClickFix URL is then dropped onto the DOM with a script tag to display the fake verification page.
+- The fake verification page presents a checkbox.
+- When the checkbox is clicked, the page presents instructions to paste content into a Run window.
+- The associated script is injected into the viewer's clipboard, a process commonly called pastejacking.
+- This pastejacked script is a PowerShell command that executes code fetched from a URL.
+
+- Domains serving .svg files are open directories and all are bulk registered in the span of three days:
+ -- between 2025-09-14 and 2025-09-16. 
+- pDNS footprint shows that all these domains are reregistered domains with some level of residual trust. 
+  -- This further helps the threat actor to circumvent reputation based detectors that rely on pDNS popularity.
+
+INDICATORS:
+
+9 EXAMPLES OF DOMAINS HOSTING SVG FILES WITH STEGANOGRAPHIC DATA:
+
+- bridgehomeservices[.]com
+- circlehomeservices[.]om
+- dillonhomeservices[.]com
+- dundalkpestcontrol[.]com
+- razorbackroofing[.]com
+- ridgewellroofing[.]com
+- northlakeresearch[.]com 
+- spurlockroofing[.]com
+- waltonenvironmental[.]com
+
+EXAMPLES OF URLS FOR CLICKFIX PAGE:
+
+- hxxp[:]//leposeur[.]com/assets/js/bootstrap.bundle.min.js  <-- Seen as recently as 2026-07-15
+- hxxp[:]//veridianroofing[.]com/assets/js/bootstrap.bundle.min.js  <-- Old URL, no longer active
+
+EXAMPLES OF URLS SEEN IN CLICKFIX TEXT INJECTED INTO CLIPBOARD:
+
+- hxxp[:]//fashionblush[.]com  <-- Seen as recently as 2026-07-15
+- hxxps[:]//xverikstat[.]us/dl/p/4cdf5cb2-39ee-43fc-92e8-d252247de62d  <-- Seen earlier in July 2026
