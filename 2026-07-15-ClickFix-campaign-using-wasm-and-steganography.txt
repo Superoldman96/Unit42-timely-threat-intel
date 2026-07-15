@@ -1,4 +1,4 @@
-2026-07-16 (WEDNESDAY): CLICKFIX CAMPAIGN USING WEBASSEMBLY (WASM) AND STEGANOGRAPHY
+2026-07-15 (WEDNESDAY): CLICKFIX CAMPAIGN USING WEBASSEMBLY (WASM) AND STEGANOGRAPHY
 
 AUTHORS:
 
@@ -21,10 +21,10 @@ NOTES:
 - The associated script is injected into the viewer's clipboard, a process commonly called pastejacking.
 - This pastejacked script is a PowerShell command that executes code fetched from a URL.
 
-- Domains serving .svg files are open directories and all are bulk registered in the span of three days:
+- Domains serving .svg files are open directories, and all are bulk registered in the span of three days:
  -- between 2025-09-14 and 2025-09-16. 
 - pDNS footprint shows that all these domains are reregistered domains with some level of residual trust. 
-  -- This further helps the threat actor to circumvent reputation based detectors that rely on pDNS popularity.
+  -- This further helps the threat actor to circumvent reputation-based detectors that rely on pDNS popularity.
 
 INDICATORS:
 
