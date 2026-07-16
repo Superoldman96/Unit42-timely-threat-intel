@@ -48,6 +48,6 @@ EXAMPLES OF URLS FOR CLICKFIX PAGE:
 
 EXAMPLES OF URLS SEEN IN CLICKFIX TEXT INJECTED INTO CLIPBOARD:
 
-- hxxp[:]//fashionblush[.]com  <-- Seen on 2026-07-15
 - hxxp[:]//djtrajic[.]com  <-- Seen on 2026-07-16
+- hxxp[:]//fashionblush[.]com  <-- Seen on 2026-07-15
 - hxxps[:]//xverikstat[.]us/dl/p/4cdf5cb2-39ee-43fc-92e8-d252247de62d
