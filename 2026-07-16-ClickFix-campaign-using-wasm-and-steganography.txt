@@ -1,4 +1,4 @@
-2026-07-16 (THURSDAY): CLICKFIX CAMPAIGN USING WEBASSEMBLY (WASM) AND STEGANOGRAPHY
+2026-07-16 (THURSDAY): CLICKFIX CAMPAIGN USING ON-THE-FLY WEBASSEMBLY (WASM) AND STEGANOGRAPHY
 
 AUTHORS:
 
@@ -7,6 +7,7 @@ AUTHORS:
 NOTES:
 
 - A ClickFix campaign is using on-the-fly WebAssembly (wasm) module instantiation and steganography through SVG images.
+  -- This on-the-fly method for WebAssembly appears to be an attempt to bypass network-level detection.
 - Pages from legitimate but compromised websites contain injected JavaScript with base64-encoded text.
 - This injected JavaScript builds a wasm module.
 - The wasm module exports decode URLs from the base64-encoded text in the JavaScript.
