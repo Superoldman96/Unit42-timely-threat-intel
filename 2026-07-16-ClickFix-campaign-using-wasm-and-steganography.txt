@@ -2,7 +2,7 @@
 
 AUTHORS:
 
-- Shaown Sarker, Nabeel Mohammed, Shehroze Farooqi, Billy Melicher, Alex Starov
+- Shaown Sarker, Nabeel Mohammed, Shehroze Farooqi, Billy Melicher, Alex Starov, Bradley Duncan
 
 NOTES:
 
