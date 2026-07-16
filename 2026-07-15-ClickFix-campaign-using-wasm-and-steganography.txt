@@ -43,8 +43,8 @@ INDICATORS:
 
 EXAMPLES OF URLS FOR CLICKFIX PAGE:
 
-- hxxp[:]//leposeur[.]com/assets/js/bootstrap.bundle.min.js  <-- Seen since as recently as 2026-07-15
-- hxxp[:]//veridianroofing[.]com/assets/js/bootstrap.bundle.min.js  <-- Old URL, no longer active
+- hxxps[:]//leposeur[.]com/assets/js/bootstrap.bundle.min.js  <-- Seen since as recently as 2026-07-15
+- hxxps[:]//veridianroofing[.]com/assets/js/bootstrap.bundle.min.js  <-- Old URL, no longer active
 
 EXAMPLES OF URLS SEEN IN CLICKFIX TEXT INJECTED INTO CLIPBOARD:
 
