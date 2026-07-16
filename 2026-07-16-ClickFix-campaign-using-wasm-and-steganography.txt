@@ -31,7 +31,7 @@ INDICATORS:
 9 EXAMPLES OF DOMAINS HOSTING SVG FILES WITH STEGANOGRAPHIC DATA:
 
 - bridgehomeservices[.]com
-- circlehomeservices[.]om
+- circlehomeservices[.]com
 - dillonhomeservices[.]com
 - dundalkpestcontrol[.]com
 - eastvaleresearch[.]org
