@@ -1,0 +1,35 @@
+2026-07-15 (WEDNESDAY): CL-CRI-1182 ACTIVITY (ASSOCIATED WITH "FALCON" GROUP)
+
+AUTHORS:
+
+Richard Emerson, Cuong Dinh
+
+NOTES:
+
+- Unit 42 recently investigated cases where attackers identified themselves in their extortion email as FALCON.
+- Unit 42 tracks this as activity cluster CL-CRI-1182.
+- Several indicators from the CL-CRI-1182 cluster overlap with CL-CRI-1116.
+- Therefore, we assess with moderate confidence that CL-CRI-1182 is related to CL-CRI-1116.
+- The CL-CRI-1116 overlaps with public reporting on a group that calls itself BlackFile.
+  -- More info on CL-CRI-1116 at: https://unit42.paloaltonetworks.com/cyber-extortion-economy/
+  -- More info on BlackFile at: https://cloud.google.com/blog/topics/threat-intelligence/blackfile-vishing-extortion-operation
+
+FACTORS COMMON TO BOTH CL-CRI-1182 AND CL-CRI-1116:
+
+- CL-CRI-1182 features a vishing playbook similar to that from CL-CRI-1116.
+  -- These attacks utilize passkey-themed domains.
+  -- Attackers exfiltrate SaaS data (SharePoint, OneDrive, Box, etc.).
+  -- Attackers use a compromised email account to send their extortion notes.
+- CL-CRI-1182 features identical domain registration and hosting patterns with CL-CRI-1116.
+  -- These patterns align across vishing domains for both activity clusters.
+  -- This includes the use of the Nicenic registrar.
+  -- The associated domains also use CloudFlare nameservers.
+- Attackers associated with CL-CRI-1182 have used Mullvad VPN.
+- An IP address we observed in a recent CL-CRI-1182 intrusion was also seen in a previously attributed CL-CRI-1116 case, further linking these two clusters.
+
+INDICATORS:
+
+IP ADDRESSES:
+
+- 38.73.255[.]211 (Observed in a recent intrusion and previously attributed to CL-CRI-1116)
+- 46.19.138[.]218 (Observed in a recent intrusion, used by the actor for data exfiltration)
