@@ -4,6 +4,11 @@ AUTHORS:
 
 Richard Emerson, Cuong Dinh
 
+REFERENCES:
+
+- https://www.linkedin.com/posts/unit42_we-recently-investigated-cases-involving-activity-7485085645921734657-aQbh/
+-  https://x.com/Unit42_Intel/status/2079320027816161709
+
 NOTES:
 
 - Unit 42 recently investigated cases where attackers identified themselves in their extortion email as FALCON.
