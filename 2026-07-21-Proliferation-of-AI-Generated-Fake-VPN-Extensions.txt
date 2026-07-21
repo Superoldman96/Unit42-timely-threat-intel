@@ -1,0 +1,98 @@
+2026-07-21 (TUESDAY): Proliferation of AI-Generated Fake VPN Extensions
+
+Authors:
+
+Ravindu De Silva and Nabeel Mohamed 
+
+NOTES:
+
+- On May 22nd 2026, we first publicly reported a threat actor operating a factory of dozens of fake VPN Chrome extensions, all routing all user browsing traffic through the same set of 15 hardcoded SOCKS5 proxy servers. (https://x.com/Unit42_Intel/status/2057860340931551588)
+- Nearly two months later, the campaign is not only stil active but also creating new cloned extensions at an increasing pace. 
+     - We detected over 350 new extensions so far.
+- The threat actor has created at least 32 new Google Chrome Store accounts each hosting 5 - 10 extensions.
+- In addition to the 15 we identified in May, some new example email accounts include noriuman26@gmail[.]com with 14 extensions and vale99505@gmail[.]com with 12 extensions.
+- The number of brand impersonation targets has increased from 4 to 15.
+- Only 14 extensions from this campaign were removed from the Chrome Web Store so far. All other extensions remain active and more than 3K installations are observed.
+- These extensions are not providing typical encrypted protection like reputed VPN extensions and all communications occur via SOCKS5 proxy and the threat actor has access to all communications.
+
+DETAILS:
+
+- Proxy domains are bulk registered on a few distinct days. With notably, 6 domains on 2026-04-05 and 19 domains on 2026-05-20. 
+- Most of these domains are co-hosted on two distinct hosting servers: 95[.]163.244[.]138 and 212[.]192.14[.]75. 
+     - This indicates some level of automation in infrastructure provisioning. 
+- Between versions 1.0.0 and 1.0.1 of extension pddhejgmgakilndagfaffgochjojogfp, the threat actor quietly added a new host permission. 
+     - This change altered the core logic to dynamically fetch the QR code from a remote server, allowing them to update the QR link without needing to push a new extension release each time.
+- 15 hardcoded static IPs cover US/EU nodes while operator-controlled hostnames handle JP/SG/CA/AU/TR which allow backend rotation without an extension update.
+
+IOCs:
+
+Example Proxy Domains:
+- vaultvpn[.]space      
+- silashield[.]space    
+- shieldtunnel[.]space   
+- turbotunnel[.]space
+- echosecure[.]space    
+- bezopasnet[.]space    
+- zenshield[.]space      
+- skyproxy[.]space
+- routekeeper[.]space   
+- stealthpath[.]space 
+- securepulse[.]space
+- ironproxy[.]space     
+- primeproxy[.]space    
+- maskirovka[.]space     
+- skorostvpn[.]space
+- cloudmask[.]space     
+- neoncloak[.]space     
+- sverchvpn[.]space      
+- nimbusshield[.]space
+- murvpn[.]space        
+- horizonguard[.]space  
+- pauktun[.]space        
+- atlasvpn[.]space
+- zhuzhvpn[.]space      
+- netroutehub[.]space   
+- vpnfasters[.]space     
+- routeshield[.]space
+- gusenvpn[.]online     
+- spidervpn[.]online
+
+Server IPs:
+- 103.35.189[.]225
+- 5.180.30[.]122
+- 185.252.215[.]98
+- 103.35.191[.]173
+- 178.130.47[.]129
+- 45.89.110[.]227
+- 80.92.204[.]47
+- 194.150.220[.]163
+- 80.92.206[.]84
+- 94.131.118[.]39
+- 80.92.204[.]33
+- 86.104.74[.]110
+- 185.252.215[.]97
+- 94.131.118[.]237
+- 5.180.30[.]15
+
+Example Fake VPN Chrome Extensions:
+
+- dlbaieojjjcjmmeohkcaadjpgeelogeb
+- almdngpalkpacjoeffkhacdjjimijjnf
+- amohbpndmbcjecjnghhaeeanohiflfpj
+- npjjbjijmdoicmkjmalabbkchhphnhkd
+- mlcdgeihjfnedibbbadinnjilgjnplip
+- cdfajacnjbaigbjnpdjeeapephdnoeng
+- hjmjmbiaafeggmgadknfbkeehppmhejk
+- flpkiejgfikibbkjnikdcaonkfindfgb
+- ihpdbailkcljcclemifagdnfmgpfnfbi
+- cabdahinacflcaaagobghohleefogogk
+- plciffedekbipeophpkkjlilcdfnnkic
+- ijilplnnjkjklkmhbklfnpnlnjpbfaie
+- ommmigkmgbilkbggodbipeffbjdbcook
+- pmmneeeipikleggeclkinacjcjnegfbm
+- fkmbekmghpabdjfobhpbnmpakibmfecm
+- edakhofdfkcdhnmcjaacekhfgochaceo
+- pbecllekjbdgokpkfmgaggfmghfdipkn
+- kjbelgiekopnehkjmcpoiiopmfhbcokn
+- celjebeafmieepphodddabmegonmanoo
+- fgdmoacjelpcghceahplbfgepnmlgnna
