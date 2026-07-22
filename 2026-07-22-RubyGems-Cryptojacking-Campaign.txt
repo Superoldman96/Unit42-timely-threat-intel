@@ -1,0 +1,212 @@
+
+2026-07-22 (THURSDAY): RubyGems Cryptojacking Campaign — Trojanized Popular Gems with XMRig Miner
+
+AUTHOR(S):
+- Moe Ghasemisharif, Ruian Duan, Zhanhao Chen, Daiping Liu
+
+NOTES:
+
+ACTOR 1 — Prvaz12_mars (jdvrie98@gmail[.]com):
+
+- 113 malicious gems were published on July 13, 2026, reaching 14,253 total downloads.
+- Each gem is a trojanized copy of a popular, legitimate Ruby library. 
+     - The naming pattern: {giga,nano,ultra,hyper,piko,super,mega,micro,mini,tiny}-{pure,sharp,smart,pro,safe,clean,fast,quick,lite,max}-{kit,tool,mod,pkg,hub,lib,box,rb,sys,gem}.
+- All gems share an identical XMRig cryptojacking payload injected into the bundled library's entry point file.
+- The payload uses a 5-hour delayed Thread.new{sleep 18000; ...} trigger to evade sandbox analysis.
+- Persistence through three mechanisms: appending to ~/.bashrc, installing a crontab entry, and creating a systemd user service.
+- SSH lateral movement: reads ~/.ssh/id_rsa and ~/.ssh/known_hosts, then propagates to known hosts.
+- Cross-language worm: infects local Node.js (package.json postinstall), Python (setup.py), Ruby (.gemspec), Docker (Dockerfile), git (pre-commit hooks), and VSCode extensions.
+- Anti-analysis: detects VMs (VMware, VirtualBox, QEMU), containers (/.dockerenv, cgroup), and debuggers before executing.
+- Load-aware mining: pauses when system load is high; CPU max-threads-hint capped at 50%.
+- Encrypted config: AES-256-GCM + RSA-4096 + ChaCha20 triple-layer encryption.
+- All gems mine to the same Monero wallet and 4 mining pools (moneroocean, p2pool, supportxmr, herominers).
+
+ACTOR 2 — monib110 (nsrtytyam687@gmail[.]com):
+
+- 23 malicious gems were published as of 2026-07-16.
+- Initially published clean placeholder gems on Jul 12 (same naming pattern, description "University research based on...").
+- Weaponized all 23 packages on July 16, introducing a simplified XMRig payload.
+- Payload is a hidden file lib/.threadpool.rb loaded via require_relative '.threadpool' from the main entry point.
+- No obfuscation — plaintext Ruby code with XMRigLauncher module.
+- Downloads XMRig dynamically via GitHub API (api.github.com/repos/xmrig/xmrig/releases/latest).
+- Runs miner inline via exec() — no persistence, no worm, no anti-analysis.
+- Single pool: pool.supportxmr.com:3333
+- Uses two naming strategies: (1) same adj-noun pattern as Prvaz12_mars, (2) typosquats with character substitution (i→1, o→0, doubled letters).
+Typosquat targets: minitest, rake, activesupport, addressable, json, aws-partitions, aws-sdk-core, aws-sigv4, jmespath, i18n, aws-eventstream, rack, tzinfo, faraday, public_suffix, rspec-core, http-cookie, multipart-post, bundler.
+
+RELATED ACCOUNT — Andrey78 (cakoc614@gmail[.]com):
+
+- 309 gems, 139,514 total downloads. Published Jul 5–14. Still LIVE on RubyGems.
+- Same naming patterns as both actors. 
+- No malicious content detected as of Jul 15.
+- Likely a staging/test account for the campaign.
+
+INDICATORS:
+
+Prvaz12_mars IOCs:
+- 47vT2mcSzKPP2fEnZJ5QaVaF2fEEmvhxZHi26Hn9XixhY6tqNTtpXE8XXhG7Uoj6eta9a9HWmhssuS712s271jFf5vPngnn (Monero wallet)
+- pool.moneroocean[.]stream:443
+- p2pool[.]io:443
+- pool.supportxmr[.]com:443
+- de.monero.herominers[.]com:443
+- raw.githubusercontent[.]com/xmrig/xmrig/v6.22.2/xmrig-6.22.2-linux-static-x64.tar.gz
+- raw.githubusercontent[.]com/xmrig/xmrig/v6.22.2/scripts/setup.sh
+- github[.]com/xmrig/xmrig/releases/download/v6.22.2/xmrig-6.22.2-linux-static-x64.tar.gz
+- jdvrie98@gmail[.]com
+- rubygems[.]org/profiles/Prvaz12_mars
+
+monib110 IOCs:
+- 8Aao1ANqXNeAfreezPgN3HYm5o96Jo8qEACDBZ1aZjjp5sRoP8HGcJwF97GEfP5GXofm9Y5vRMsWrWpxNNmKcQWh9qnqXZ2 (Monero wallet)
+- pool.supportxmr[.]com:3333
+- api.github[.]com/repos/xmrig/xmrig/releases/latest
+- nsrtytyam687@gmail[.]com
+- rubygems[.]org/profiles/monib110
+
+Related account:
+- cakoc614@gmail[.]com
+- rubygems[.]org/profiles/Andrey78
+
+MALICIOUS PACKAGES:
+
+Prvaz12_mars:
+
+- rubygems[.]org/gems/ultra-smart-tool
+- rubygems[.]org/gems/nano-sharp-kit
+- rubygems[.]org/gems/ultra-pro-pkg
+- rubygems[.]org/gems/hyper-safe-hub
+- rubygems[.]org/gems/hyper-sharp-lib
+- rubygems[.]org/gems/piko-clean-hub
+- rubygems[.]org/gems/nano-quick-mod
+- rubygems[.]org/gems/super-lite-hub
+- rubygems[.]org/gems/giga-clean-kit
+- rubygems[.]org/gems/micro-fast-mod
+- rubygems[.]org/gems/mega-pro-kit
+- rubygems[.]org/gems/nano-quick-box
+- rubygems[.]org/gems/super-pure-rb
+- rubygems[.]org/gems/mega-safe-hub
+- rubygems[.]org/gems/piko-fast-rb
+- rubygems[.]org/gems/hyper-pro-kit
+- rubygems[.]org/gems/mini-safe-mod
+- rubygems[.]org/gems/giga-pure-kit
+- rubygems[.]org/gems/giga-sharp-tool
+- rubygems[.]org/gems/tiny-smart-mod
+- rubygems[.]org/gems/tiny-pro-sys
+- rubygems[.]org/gems/hyper-quick-kit
+- rubygems[.]org/gems/giga-clean-box
+- rubygems[.]org/gems/tiny-pure-box
+- rubygems[.]org/gems/micro-sharp-mod
+- rubygems[.]org/gems/mini-clean-sys
+- rubygems[.]org/gems/hyper-lite-tool
+- rubygems[.]org/gems/mega-smart-sys
+- rubygems[.]org/gems/hyper-smart-kit
+- rubygems[.]org/gems/tiny-sharp-pkg
+- rubygems[.]org/gems/nano-safe-sys
+- rubygems[.]org/gems/tiny-smart-sys
+- rubygems[.]org/gems/micro-max-mod
+- rubygems[.]org/gems/mini-sharp-lib
+- rubygems[.]org/gems/tiny-safe-sys
+- rubygems[.]org/gems/giga-quick-rb
+- rubygems[.]org/gems/ultra-pro-kit
+- rubygems[.]org/gems/ultra-smart-hub
+- rubygems[.]org/gems/mega-quick-rb
+- rubygems[.]org/gems/micro-max-rb
+- rubygems[.]org/gems/piko-max-gem
+- rubygems[.]org/gems/nano-max-box
+- rubygems[.]org/gems/micro-lite-pkg
+- rubygems[.]org/gems/mega-sharp-hub
+- rubygems[.]org/gems/micro-safe-tool
+- rubygems[.]org/gems/piko-sharp-sys
+- rubygems[.]org/gems/giga-clean-pkg
+- rubygems[.]org/gems/mega-smart-pkg
+- rubygems[.]org/gems/nano-fast-lib
+- rubygems[.]org/gems/ultra-safe-box
+- rubygems[.]org/gems/micro-clean-gem
+- rubygems[.]org/gems/ultra-smart-pkg
+- rubygems[.]org/gems/ultra-max-sys
+- rubygems[.]org/gems/mega-pure-gem
+- rubygems[.]org/gems/nano-max-mod
+- rubygems[.]org/gems/micro-pure-kit
+- rubygems[.]org/gems/piko-fast-box
+- rubygems[.]org/gems/mega-lite-kit
+- rubygems[.]org/gems/piko-lite-mod
+- rubygems[.]org/gems/tiny-pro-lib
+- rubygems[.]org/gems/ultra-pure-mod
+- rubygems[.]org/gems/super-sharp-lib
+- rubygems[.]org/gems/giga-max-mod
+- rubygems[.]org/gems/ultra-quick-hub
+- rubygems[.]org/gems/nano-smart-gem
+- rubygems[.]org/gems/piko-fast-gem
+- rubygems[.]org/gems/super-quick-gem
+- rubygems[.]org/gems/ultra-pro-tool
+- rubygems[.]org/gems/piko-lite-gem
+- rubygems[.]org/gems/ultra-pure-hub
+- rubygems[.]org/gems/nano-smart-pkg
+- rubygems[.]org/gems/mini-safe-lib
+- rubygems[.]org/gems/mini-max-gem
+- rubygems[.]org/gems/nano-smart-box
+- rubygems[.]org/gems/mega-fast-sys
+- rubygems[.]org/gems/tiny-max-gem
+- rubygems[.]org/gems/piko-max-tool
+- rubygems[.]org/gems/nano-pure-tool
+- rubygems[.]org/gems/tiny-max-box
+- rubygems[.]org/gems/ultra-max-pkg
+- rubygems[.]org/gems/super-sharp-sys
+- rubygems[.]org/gems/micro-max-hub
+- rubygems[.]org/gems/mega-pure-tool
+- rubygems[.]org/gems/mega-clean-sys
+- rubygems[.]org/gems/giga-safe-hub
+- rubygems[.]org/gems/hyper-safe-kit
+- rubygems[.]org/gems/super-quick-sys
+- rubygems[.]org/gems/mega-pro-box
+- rubygems[.]org/gems/mega-smart-tool
+- rubygems[.]org/gems/mini-pure-lib
+- rubygems[.]org/gems/piko-smart-pkg
+- rubygems[.]org/gems/mini-safe-gem
+- rubygems[.]org/gems/ultra-fast-rb
+- rubygems[.]org/gems/hyper-sharp-box
+- rubygems[.]org/gems/micro-fast-hub
+- rubygems[.]org/gems/super-pro-hub
+- rubygems[.]org/gems/nano-clean-sys
+- rubygems[.]org/gems/piko-smart-sys
+- rubygems[.]org/gems/mini-pure-tool
+- rubygems[.]org/gems/micro-sharp-kit
+- rubygems[.]org/gems/mini-lite-rb
+- rubygems[.]org/gems/micro-quick-box
+- rubygems[.]org/gems/mini-fast-lib
+- rubygems[.]org/gems/ultra-fast-hub
+- rubygems[.]org/gems/mini-sharp-kit
+- rubygems[.]org/gems/ultra-sharp-kit
+- rubygems[.]org/gems/mega-safe-pkg
+- rubygems[.]org/gems/piko-clean-mod
+- rubygems[.]org/gems/mini-quick-pkg
+- rubygems[.]org/gems/nano-quick-tool
+- rubygems[.]org/gems/tiny-quick-box
+- rubygems[.]org/gems/tiny-pro-rb
+- rubygems[.]org/gems/giga-max-kit
+
+monib110:
+
+- rubygems[.]org/gems/minitestt
+- rubygems[.]org/gems/hyper-max-rb
+- rubygems[.]org/gems/mega-lite-box
+- rubygems[.]org/gems/piko-max-box
+- rubygems[.]org/gems/micro-pro-box
+- rubygems[.]org/gems/piko-sharp-box
+- rubygems[.]org/gems/giga-clean-rb
+- rubygems[.]org/gems/aws-partit1ons
+- rubygems[.]org/gems/rakee
+- rubygems[.]org/gems/activesuport
+- rubygems[.]org/gems/addresable
+- rubygems[.]org/gems/js0n
+- rubygems[.]org/gems/bundelr  
+- rubygems[.]org/gems/aws-sdk-c0re  
+- rubygems[.]org/gems/aws-s1gv4  
+- rubygems[.]org/gems/jmesp4th  
+- rubygems[.]org/gems/1-8n  
+- rubygems[.]org/gems/aws-eventstre4m  
+- rubygems[.]org/gems/rac  
+- rubygems[.]org/gems/tz1nfo  
+- rubygems[.]org/gems/faradayy  
+- rubygems[.]org/gems/public_suff1x  
+- rubygems[.]org/gems/rspec-c0re
+
