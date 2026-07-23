@@ -1,0 +1,78 @@
+2026-07-23 (Thursday): New Rhadamanthys campaign seen following Global Law Enforcement takedown.
+
+AUTHOR(S):
+
+- Jonny Westfall, Cameron Martin
+
+NOTES:
+
+- Rhadamanthys seen following law enforcement takedown of website impersonating RingCentral.
+- Malware employs multiple layers of DLL side-loading leading to shell code injection.
+
+DETAILS:
+Initial Access: Deceptive Download
+- Cloned Infrastructure: webpage impersonating RingCentral (rlngcentrel[.]com/download/)
+- Action: User clicks "Download ZIP for Windows"
+- Redirection: Routed through PHP redirector (/file.php?src=download_win_exe)
+- Payload Delivery: Malicious ZIP archive containing setup.exe downloaded to disk.
+
+Stage 1 Execution & Defense Evasion: The Oversized Dropper
+- Parent Process: setup.exe
+- Sideloads: Initial container DLL (located in either the generated Krita or BugSplat path).
+- Defense Evasion: This file is intentionally inflated to 385,126,400 bytes to thwart automated analysis and exceed standard sandbox size limits.
+- Payload Release: Unpacks and drops all subsequent infection files (executables and malicious DLLs) to the disk.
+
+Stage 2 Execution & Privilege Escalation: Component Sideloading
+- Pathway A: Krita Masquerade
+   - Execution: Dropped krita.exe is spawned.
+   - Sideloads: krita.dll (Obfuscated, dynamic API resolution via PEB/djb2).
+   - Privilege Escalation: UAC Bypass via Environment Variable Manipulation (HKCU\Environment\windir = c:\dell).
+- Pathway B: BugSplat Masquerade
+   - Execution: Dropped BugSplatHD64.exe is spawned.
+   - Sideloads: BugSplat64.dll (Impersonates crash reporter, 40MB .bss obfuscation).
+   - Privilege Escalation: UAC Bypass (Environment Variable Manipulation).
+
+Stage 3 Defense Evasion & Process Injection
+- Target Process: svchost.exe
+- Action: krita.dll or BugSplat64.dll injects 64-bit Assembly Shellcode.
+- Component: Reflective PE Loader.
+   - Recovers base address & scans for MZ/PE signatures.
+   - Resolves APIs (VirtualAlloc, LoadLibraryA, etc.) via PEB walking and djb2 hashing.
+   - Allocates PAGE_EXECUTE_READWRITE memory.
+- Payload Execution: Maps and executes embedded 3017-byte PE32+ DLL.
+
+Stage 4 Command & Control (C2) Initialization (Executes within svchost.exe)
+- Step 1: Extract 16-byte RC4 Key.
+- Step 2: RC4 Decrypt Config Data.
+- Step 3: Parse Server Entries (128 bytes each).
+- Step 4: Connect to C2 via Socket.
+   - Infrastructure Tactic: Connects to Azure Front Door CDN domains serving as C2 redirectors. This masks the true backend C2 server IP and blends malicious traffic with legitimate Microsoft cloud infrastructure.
+Known Endpoints: * -    
+     - Azure-h5acekaze0f7fhf8[.]z02[.]azurefd[.]net
+     - azure-a8bqa7acbwf4dddv[.]z02[.]azurefd[.]net
+- Step 5: Establish RC4 Encrypted Communication.
+
+Stage 5 Action on Objectives: Command Dispatch
+- Decision Node: Awaits C2 Instructions.
+   - Branch 1: cmd 10 -> Keepalive
+   - Branch 2: cmd 21 -> Data Transfer
+   - Branch 3: cmd 32 -> Process Execution
+   - Branch 4: cmd 33 -> File Operations
+   - Branch 5: cmd 50 -> System Info Collection
+   - Branch 6: cmd 8993 -> Extended Operations
+
+
+INDICATORS:
+Domains
+- 8eh18dhq9wd[.]click
+- 8nioqhxciwoqc[.]click
+- 8fnuawbfuac[.]click
+- azure-h5acekaze0f7fhf8[.]z02[.]azurefd[.]net
+- azure-a8bqa7acbwf4dddv[.]z02[.]azurefd[.]net
+- rlngcentrel[.]com
+
+SHA256 hashes
+- krita.dll - 9b0e4e6aa169eb51ffc127edd62afb405bffa8ac74172f0df256ffffa028cb9e
+- BugSplat64.dll - cbb4b70bdd1c8f892a234574290123bb7c69eaae934c9a4975affac75fa6c9d3
+
+
